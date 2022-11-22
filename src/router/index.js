@@ -9,6 +9,7 @@ import Find from '@/views/findView'
 import Message from '@/views/messageView'
 import Stat from '@/views/statView'
 import Me from '@/views/meView'
+import Talk from '@/views/talkView'
 
 Vue.use(VueRouter)
 
@@ -59,6 +60,11 @@ const routes = [
                 path: '/me',
                 name: 'me',
                 component: Me 
+            },
+            {
+                path: '/talk',
+                name: 'talk',
+                component: Talk
             }
         ]
     }

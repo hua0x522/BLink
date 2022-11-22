@@ -1,30 +1,75 @@
 <template>
-  <v-container class="fill-height home" fluid>
-    <v-row>
-      <v-col>
-        <div class="text-h3 text-center wText" style="padding-top: 280px;">BLink</div>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <div class="text-h4 text-center wText">搭建起沟通学生、高校与企业的桥梁</div>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-app>
+    <div class="wrap-home-resources">
+    
+      <!-- <script src="./home-resources.js" inline></script> -->
+    
+      <div class="home-resources-header">
+        <h1>
+          行业热点，实时预览
+        </h1>
+      </div>
+      
+      <div class="home-resources-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="carousel-home-resources" class="carousel-home-resources">
+                <carousel-3d 
+                             :perspective="30"
+                             :border="0"
+                             :width="585"
+                             :height="370"
+                             :controls-visible="true"
+                             :space="500"
+                             :clickable="true">
+      
+                  <slide :index="0">
+                    <img src="../../img/img1.jpg" />
+                  </slide>
+      
+                  <slide :index="1">
+                    <img src="../../img/img1.jpg" />
+                  </slide>
+      
+                  <slide :index="2">
+                    <img src="../../img/img1.jpg" />
+                  </slide>
+      
+                </carousel-3d>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </v-app>
 </template>
 
 <script>
+import {Carousel3d, Slide} from 'vue-carousel-3d'
 export default {
-
+  data() {
+    return {
+      slides: 3
+    }
+  },
+  components: {
+    Carousel3d,
+    Slide 
+  }
 }
 </script>
 
-<style>
-.home {
-  background: url("../../img/home.jpg") no-repeat;
-  background-size: 100% 100%;
+<style lang="scss" scoped>
+
+.carousel-home-resources {
+  .left-1 {
+    transform: translateX(-500px) translateZ(-400px) rotateY(-30deg) !important;
+  }
+  .right-1 {
+    transform: translateX(500px) translateZ(-400px) rotateY(30deg) !important;
+  }
 }
-.wText {
-  color: white;
-}
+
 </style>
