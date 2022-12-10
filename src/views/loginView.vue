@@ -6,7 +6,7 @@
           <v-img src="../../img/login.png"></v-img>
         </v-col>
         <v-col :cols="5">
-          <div class="text-h3 mb-8 px-6">{{ title }}</div>
+          <div class="text-h3 ml-4 accent--text">{{ title }}</div>
           <v-divider class="mb-4"></v-divider> 
           <!-- 登陆表单 -->
           <v-row no-gutters class="justify-center">
@@ -30,11 +30,12 @@
                 ></v-text-field>
                 <v-row>
                   <v-col>
-                    <v-btn :disabled="!valid" color="light-blue" rounded class="mt-8" @click="submit" block
+                    <v-btn :disabled="!valid" color="accent" rounded class="mt-8" @click="submit" block
                     style="color:white">登录</v-btn>
                   </v-col>
                   <v-col>
-                    <v-btn :disabled="!valid" color="white" rounded class="mt-8" @click="submit" block>注册</v-btn>
+                    <v-btn :disabled="!valid" color="white" rounded class="mt-8" 
+                    @click="submit" block to="/register">注册</v-btn>
                   </v-col>
                 </v-row>
               </v-form>

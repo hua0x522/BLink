@@ -3,9 +3,10 @@ import VueRouter from 'vue-router'
 
 import Base from '@/views/baseView'
 import Login from '@/views/loginView'
+import Register from '@/views/registerView'
 import Home from '@/views/homeView'
 import Job from '@/views/jobView'
-import Find from '@/views/findView'
+import Resume from '@/views/resumeView'
 import Message from '@/views/messageView'
 import Stat from '@/views/statView'
 import Me from '@/views/meView'
@@ -14,6 +15,19 @@ import Talk from '@/views/talkView'
 Vue.use(VueRouter)
 
 const routes = [
+    {
+        path: '/login', 
+        name: 'login',
+        meta: {
+            title: 'BLink - 用户登录'
+        },
+        component: Login
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: Register
+    },
     {
         path: '/',
         name: 'base',
@@ -26,14 +40,6 @@ const routes = [
                 component: Home
             },
             {
-                path: '/login', 
-                name: 'login',
-                meta: {
-                    title: 'BLink - 用户登录'
-                },
-                component: Login
-            },
-            {
                 path: '/job',
                 name: 'job',
                 meta: {
@@ -42,9 +48,9 @@ const routes = [
                 component: Job
             },
             {
-                path: '/find',
-                name: 'find',
-                component: Find
+                path: '/resume',
+                name: 'resume',
+                component: Resume
             },
             {
                 path: '/message',

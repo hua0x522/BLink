@@ -46,8 +46,8 @@
       ></nav-menu-link>
       <!-- <nav-menu-section-title title="USER INTERFACE"></nav-menu-section-title> -->
       <nav-menu-link
-        title="发现朋友"
-        :to="{ name: 'find' }"
+        title="创建简历"
+        :to="{ name: 'resume' }"
         :icon="icons.mdiAlphaTBoxOutline"
       ></nav-menu-link>
       <nav-menu-link
