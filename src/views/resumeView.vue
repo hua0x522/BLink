@@ -3,8 +3,8 @@
     <v-row>
       <v-col>
         <v-btn class="primary" @click="(writeInfo = !writeInfo)">创建新简历</v-btn>
-        <v-overlay :value="writeInfo">
-          <v-card class="" width="800px">
+        <v-dialog v-model="writeInfo" max-width="600px">
+          <v-card>
             <v-row>
               <v-col class="ml-8 mr-8 mb-4 mt-4">
                 <v-text-field label="简历名称" v-model="content.name" outlined></v-text-field>
@@ -19,7 +19,7 @@
               </v-col>
             </v-row>
           </v-card>
-        </v-overlay>
+        </v-dialog>
       </v-col>
     </v-row>
 
@@ -34,8 +34,8 @@
             <v-btn class="error" @click="remove(i)">删除</v-btn>
           </v-card-actions>
         </v-card>
-        <v-overlay :value="lookInfo">
-          <v-card width="500px">
+        <v-dialog v-model="lookInfo" max-width="500px">
+          <v-card>
             <v-card-text>
               <h1>{{(lookInfo > 0) ? contents[lookInfo-1].name: ""}}</h1>
               <h2>教育背景</h2>
@@ -49,7 +49,7 @@
               <v-btn class="error" @click="close">关闭</v-btn>
             </v-card-actions>
           </v-card>
-        </v-overlay>
+        </v-dialog>
       </v-col>
     </v-row>
   </v-container>
@@ -75,6 +75,7 @@ export default {
       this.writeInfo = !this.writeInfo;
       let clone = Object.assign({}, this.content);
       this.contents.push(clone);
+      this.submit_serve();
       this.content.name = "";
       this.content.experience = "";
       this.content.edu = "";
@@ -87,8 +88,23 @@ export default {
       this.lookInfo = 0
     },
     remove(i) {
-      this.contents.splice(i, 1)
+      this.remove_serve(i);
+      this.contents.splice(i, 1);
+    },
+    
+    submit_serve() {
+      //TODO
+    },
+    remove_serve(i) {
+      i;
+      //TODO
+    },
+    getMyResume() {
+      //TODO
     }
+  },
+  mounted() {
+    this.getMyResume();
   }
 }
 </script>

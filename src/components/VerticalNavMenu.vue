@@ -51,8 +51,8 @@
         :icon="icons.mdiAlphaTBoxOutline"
       ></nav-menu-link>
       <nav-menu-link
-        title="消息通知"
-        :to="{ name: 'message' }"
+        title="接收简历"
+        :to="{ name: 'receive' }"
         :icon="icons.mdiEyeOutline"
       ></nav-menu-link>
       <nav-menu-link

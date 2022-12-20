@@ -23,11 +23,6 @@
               {{ icons.mdiGithub }}
             </v-icon>
           </a>
-          <v-btn icon small class="ms-3">
-            <v-icon>
-              {{ icons.mdiBellOutline }}
-            </v-icon>
-          </v-btn>
         </div>
       </div>
     </v-app-bar>

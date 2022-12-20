@@ -7,10 +7,10 @@ import Register from '@/views/registerView'
 import Home from '@/views/homeView'
 import Job from '@/views/jobView'
 import Resume from '@/views/resumeView'
-import Message from '@/views/messageView'
 import Stat from '@/views/statView'
 import Me from '@/views/meView'
 import Talk from '@/views/talkView'
+import Receive from '@/views/receiveView'
 
 Vue.use(VueRouter)
 
@@ -53,9 +53,9 @@ const routes = [
                 component: Resume
             },
             {
-                path: '/message',
-                name: 'message',
-                component: Message 
+                path: '/receive',
+                name: 'receive',
+                component: Receive
             },
             {
                 path: '/stat',

@@ -4,7 +4,7 @@
     
       <!-- <script src="./home-resources.js" inline></script> -->
     
-      <div class="home-resources-header">
+      <div class="home-resources-header title-gradient bg-gradient-primary">
         <h1>
           行业热点，实时预览
         </h1>
@@ -70,6 +70,12 @@ export default {
   .right-1 {
     transform: translateX(500px) translateZ(-400px) rotateY(30deg) !important;
   }
+}
+
+.title-gradient {
+  -webkit-background-clip: text;
+  color: transparent;
+  width: 300px;
 }
 
 </style>
