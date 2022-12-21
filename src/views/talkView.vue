@@ -32,11 +32,11 @@
               <v-btn class="error" @click="remove(i)">删除</v-btn>
             </v-card-actions>
           </v-card>
-          <v-dialog v-model="lookInfo" max-width="500px">
+          <v-dialog v-model="showInfo" max-width="500px">
             <v-card>
               <v-card-text>
-                <h3>{{(lookInfo > 0) ? contents[lookInfo-1].title: ""}}</h3>
-                <p>{{(lookInfo > 0) ? contents[lookInfo-1].text: ""}}</p>
+                <h3>{{ contents[lookInfo].title }}</h3>
+                <p>{{ contents[lookInfo].text }}</p>
               </v-card-text>
               <v-card-actions class="d-flex align-center justify-center">
                 <v-btn class="error" @click="close">关闭</v-btn>
@@ -58,7 +58,8 @@
           text: ""
         },
         contents: [],
-        lookInfo: 0
+        lookInfo: 0,
+        showInfo:false
       }
     },
     methods: {
@@ -70,10 +71,11 @@
         this.content.title = "";  
       },
       look(i) {
-        this.lookInfo = i + 1
+        this.lookInfo = i;
+        this.showInfo = true;
       },
       close() {
-        this.lookInfo = 0
+        this.showInfo = false
       },
       remove(i) {
         this.contents.splice(i, 1)

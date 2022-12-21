@@ -1,13 +1,13 @@
-const user = {
+let user = {
     namespaced: true,
     state: {
-        real_name: "",
-        username: "",
+        real_name: "王雪竹",
+        username: "wxz",
         islogin: false,
-        password: "",
-        sex: "",
+        password: "123456",
+        sex: "男",
         status:"",
-        type: "",
+        type: "学生",
         student: {
             school_name:"",
             grade:"",
