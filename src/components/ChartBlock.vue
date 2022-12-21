@@ -1,55 +1,139 @@
 <template>
-  <div ref="chart1" style="width: 400px; height:400px;"></div>
+  <v-row>
+    <v-col :cols="12">
+      <h1>用户数据统计</h1>
+    </v-col>
+    <v-col :cols="6">
+      <div ref="chart1" style="width:400px; height:400px;"></div>
+    </v-col>
+    <v-col :cols="6">
+        <div ref="chart2" style="width:400px; height:400px;"></div>
+    </v-col>
+    <v-col :cols="12">
+      <h1>岗位数据统计</h1>
+    </v-col>
+    <v-col :cols="6">
+        <div ref="chart3" style="width:400px; height:400px;"></div>
+    </v-col>
+    <v-col :cols="6">
+        <div ref="chart4" style="width:400px; height:400px;"></div>
+    </v-col>
+  </v-row>
 </template>
-
-<script>
-import * as echarts from 'echarts'
-export default {
+  
+  <script>
+  import * as echarts from 'echarts'
+  export default {
     data() {
-        return {
-            chart1: null,
-            option: {
-              title: {},
-              legend: {
-                orient: 'vertical',
-                left: 'left'
-              },
-              series: [
-                {
-                  name: 'Access From',
-                  type: 'pie',
-                  radius: '50%',
-                  data: [
-                    { value: 1048, name: '学生' },
-                    { value: 735, name: '教师' },
-                    { value: 580, name: '校友' },
-                  ],
-                  emphasis: {
-                    itemStyle: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  }
+      return {
+        chart1: null,
+        chart2: null,
+        chart3: null,
+        option1: {
+          title: {},
+          tooltip: {
+            trigger: 'item'
+          },
+          legend: {
+            orient: 'vertical',
+            left: 'left'
+          },
+          series: [
+            {
+              name: '占比',
+              type: 'pie',
+              radius: '50%',
+              data: [
+                { value: 1048, name: '学生' },
+                { value: 735, name: '教师' },
+                { value: 580, name: '校友' },
+              ],
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
                 }
-              ]
+              }
             }
+          ]
+        },
+        option2: {
+          legend: {},
+          tooltip: {},
+          dataset: {
+            source: [
+              ['数量','学校', '企业', '实验室'],
+              ["参与数量", 43.3, 85.8, 93.7]
+            ]
+          },
+          xAxis: { type: 'category' },
+          yAxis: {},
+          series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+        },
+        option3: {
+          legend: {},
+          tooltip: {},
+          dataset: {
+            source: [
+              ['数量', '3k以下', '3k-5k', '5k-8k', '8k-10k', '10k以上'],
+              ["参与数量", 43.3, 85.8, 93.7, 60.0, 15.2]
+            ]
+          },
+          xAxis: { type: 'category' },
+          yAxis: {},
+          series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+        },
+        option4: {
+          title: {},
+          tooltip: {
+            trigger: 'item'
+          },
+          legend: {
+            orient: 'vertical',
+            left: 'left'
+          },
+          series: [
+            {
+              name: '占比',
+              type: 'pie',
+              radius: ['30%', '60%'],
+              data: [
+                { value: 1048, name: 'IT科技' },
+                { value: 735, name: '文化传媒' },
+                { value: 580, name: '金融财务' },
+              ],
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
         }
+      }
     },
     methods: {
-        initChart() {
-            theme;
-            // echarts.registerTheme('waldon', theme)
-            this.chart1 = echarts.init(this.$refs.chart1)
-            this.chart1.setOption(this.option)
-        }
+      initChart() {
+        echarts.registerTheme("waldon", theme)
+        this.chart1 = echarts.init(this.$refs.chart1, "waldon")
+        this.chart1.setOption(this.option1)
+        this.chart2 = echarts.init(this.$refs.chart2, "waldon")
+        this.chart2.setOption(this.option2)
+        this.chart3 = echarts.init(this.$refs.chart3, "waldon")
+        this.chart3.setOption(this.option3)
+        this.chart4 = echarts.init(this.$refs.chart4, "waldon")
+        this.chart4.setOption(this.option4)
+      }
     },
-    mounted() {
-        this.initChart()
+    mounted: function() {
+      this.initChart()
     }
-}
+  }
 
-const theme = {
+  const theme = {
     "color": [
         "#3fb1e3",
         "#6be6c1",
@@ -440,3 +524,5 @@ const theme = {
         }
     }
 }
+
+  </script>

@@ -89,9 +89,9 @@
       },
       methods: {
           nextStep() {
-            if (this.role === "学生") this.step = 1;
-            else if (this.role === "校友") this.step = 2;
-            else if (this.role === "教师") this.step = 3;
+            if (this.info.type === "学生") this.step = 1;
+            else if (this.info.type === "校友") this.step = 2;
+            else if (this.info.type === "教师") this.step = 3;
             else this.step = 0;
           },
           submit() {
