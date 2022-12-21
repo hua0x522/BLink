@@ -1,5 +1,5 @@
 <template>
-    <div ref="chart1" style="width: 400px; height:400px;"></div>
+  <div ref="chart1" style="width: 400px; height:400px;"></div>
 </template>
 
 <script>
@@ -38,8 +38,9 @@ export default {
     },
     methods: {
         initChart() {
-            echarts.registerTheme('waldon', theme)
-            this.chart1 = echarts.init(this.$refs.chart1, 'waldon')
+            theme;
+            // echarts.registerTheme('waldon', theme)
+            this.chart1 = echarts.init(this.$refs.chart1)
             this.chart1.setOption(this.option)
         }
     },
@@ -439,5 +440,3 @@ const theme = {
         }
     }
 }
-
-</script>
