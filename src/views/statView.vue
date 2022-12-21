@@ -1,20 +1,18 @@
 <template>
   <v-container>
-    <div>
-      
-    </div> 
+    <chart-block></chart-block>
   </v-container>
 </template>
 
 <script>
-import ChartBlock from '@/components/ChartBlock.vue'
+import ChartBlock from '../components/ChartBlock'
 export default {
     data() {
         return {
 
         }
     },
-    comments: {
+    components: {
       ChartBlock
     }
 }

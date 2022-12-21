@@ -1,54 +1,5 @@
-<template>
-    <div ref="chart1" style="width: 400px; height:400px;"></div>
-</template>
 
-<script>
-import * as echarts from 'echarts'
-export default {
-    data() {
-        return {
-            chart1: null,
-            option: {
-              title: {},
-              legend: {
-                orient: 'vertical',
-                left: 'left'
-              },
-              series: [
-                {
-                  name: 'Access From',
-                  type: 'pie',
-                  radius: '50%',
-                  data: [
-                    { value: 1048, name: '学生' },
-                    { value: 735, name: '教师' },
-                    { value: 580, name: '校友' },
-                  ],
-                  emphasis: {
-                    itemStyle: {
-                      shadowBlur: 10,
-                      shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  }
-                }
-              ]
-            }
-        }
-    },
-    methods: {
-        initChart() {
-            echarts.registerTheme('waldon', theme)
-            this.chart1 = echarts.init(this.$refs.chart1, 'waldon')
-            this.chart1.setOption(this.option)
-        }
-    },
-    mounted() {
-        this.initChart()
-    }
-}
-
-const theme = {
+{
     "color": [
         "#3fb1e3",
         "#6be6c1",
@@ -439,5 +390,3 @@ const theme = {
         }
     }
 }
-
-</script>
