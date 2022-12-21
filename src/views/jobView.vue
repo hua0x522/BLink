@@ -9,21 +9,8 @@
               dense
               outlined
               :prepend-inner-icon="icon"
-              :items="domains"
-              v-model="label[0]"
-              label="领域"
-            ></v-select>
-          </v-col>
-
-          <v-col :cols="2">
-            <v-select
-              rounded
-              dense
-              outlined
-              :prepend-inner-icon="icon"
-              :items="industries"
-              v-model="label[1]"
-              v-show="label[0]"
+              :items="subject"
+              v-model="select[0]"
               label="行业"
             ></v-select>
           </v-col>
@@ -34,10 +21,21 @@
               dense
               outlined
               :prepend-inner-icon="icon"
-              :items="occupations"
-              v-model="label[2]"
-              v-show="label[1]"
-              label="岗位"
+              :items="major"
+              v-model="select[1]"
+              v-show="select[0]"
+            ></v-select>
+          </v-col>
+
+          <v-col :cols="2">
+            <v-select
+              rounded
+              dense
+              outlined
+              :prepend-inner-icon="icon"
+              :items="job"
+              v-model="select[2]"
+              v-show="select[1]"
             ></v-select>
           </v-col>
 
@@ -49,8 +47,7 @@
               dense
               outlined
               :prepend-inner-icon="icon"
-              :items="cities"
-              v-model="city"
+              :items="city"
               label="城市"
             ></v-select>
           </v-col>
@@ -61,9 +58,8 @@
               dense
               outlined
               :prepend-inner-icon="icon"
-              :items="salaries"
-              v-model="salary"
-              label="薪酬" 
+              :items="salary"
+              label="薪酬"
             ></v-select>
           </v-col>
 
@@ -73,34 +69,21 @@
         </v-row>
         
         <v-row>
-          <v-col :cols="4" v-for="(content, i) in contents" :key="i">
+          <v-col :cols="4">
             <v-card>
               <v-card-title>
-                <p>{{ content.name }}</p>
+                <p>算法工程师</p>
               </v-card-title>
               <v-card-text>
-                <p>{{ content.demanding }}</p>
+                <p>工作职责：1、负责智慧医疗相关诊断和治疗算法的开发和维护；2、利用机器学习、深度学习相关算法进行模型训练和参数优化；3、前沿论文进展追踪，相关算法实现</p>
               </v-card-text>
               <v-card-actions class="d-flex justify-center">
-                <v-btn class="primary" @click="look(i)">查看详情</v-btn>
-                <v-btn class="ml-12 mr-6 primary" @click="send(i)">投递简历</v-btn>
+                <v-btn class="primary">查看详情</v-btn>
+                <v-btn class="ml-12 mr-6 primary">投递简历</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
-        <v-dialog v-model="showInfo" max-width="500px">
-
-        </v-dialog>
-        <v-dialog v-model="showSend" max-width="500px">
-          <v-card class="pa-4">
-            <v-card-title class="d-flex justify-center">
-              <h2>请选择要投递的简历</h2>
-            </v-card-title>
-            <div class="d-flex justify-center ma-4" v-for="(name, i) in $store.state.resume.names" :key="i">
-              <v-btn max-width="100px" class="accent">{{ name }}</v-btn>
-            </div>
-          </v-card>
-        </v-dialog>
       </v-col>
     </v-row>   
   </v-app>
@@ -111,41 +94,18 @@ import { mdiMagnify } from '@mdi/js'
 export default {
     data: function() {
         return {
-          lookInfo:0,
-          showInfo:false,
-          showSend:false,
           icon: mdiMagnify,
-          domains: ['IT科技','文化传媒','金融财务'],
-          industries: ['计算机','电子信息','网络安全'],
-          occupations: ['软件工程师','算法工程师'],
-          label: ["", "", ""],
-          cities: ["北京市","上海市"],
-          salaries: ["3k以下", "3k-5k", "5k-8k", "8k-10k", "10k以上"],
-          city:"",
-          salary:"",
-          contents: [
-            {
-              name:"算法工程师",
-              description:"工作职责：1、负责智慧医疗相关诊断和治疗算法的开发和维护；2、利用机器学习、深度学习相关算法进行模型训练和参数优化；3、前沿论文进展追踪，相关算法实现",
-              demanding:"工作职责：1、负责智慧医疗相关诊断和治疗算法的开发和维护；2、利用机器学习、深度学习相关算法进行模型训练和参数优化；3、前沿论文进展追踪，相关算法实现",
-              salary:"8k-10k",
-              place:"北京市",
-              label:["","",""]
-            }
-          ]
+          subject: ['IT科技','文化传媒','金融财务'],
+          major: ['计算机','电子信息','网络安全'],
+          job: ['软件工程师','算法工程师'],
+          select: ["", "", ""],
+          city: ["北京市","上海市"],
+          salary: ["3k以下", "3k-5k", "5k-8k", "8k-10k", "10k以上"],
         }
     },
     methods: {
       submit() {
-
-      },
-      look(i) {
-        this.lookInfo = i;
-        this.showInfo = true;
-      },
-      send(i) {
-        this.lookInfo = i;
-        this.showSend = true;
+        
       }
     }
 }

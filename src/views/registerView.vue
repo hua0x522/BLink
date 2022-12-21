@@ -94,8 +94,57 @@
             else if (this.role === "教师") this.step = 3;
             else this.step = 0;
           },
-          submit() {
-
+          submit:function() {
+            if (this.info.username === "") {
+              alert("用户名不能为空！");
+              return;
+            }if (this.info.password === "") {
+              alert("密码不能为空！");
+              return;
+            }if (this.info.sex === "") {
+              alert("性别不能为空！");
+              return;
+            }if (this.info.type === "") {
+              alert("身份类别不能为空！");
+              return;
+            }
+            let formData = {};
+            formData["real_name"] = this.info.real_name;
+            formData["username"] = this.info.username;
+            formData["password"] = this.info.password;
+            formData["sex"] = this.info.sex;
+            formData["type"] = this.info.type;
+            if(formData["type"]==="学生"){
+              formData["school_name"] = this.student_info.school_name;
+              formData["grade"] = this.student_info.grade;
+              formData["major"] = this.student_info.major;
+            }else if(formData["type"]==="老师"){
+              formData["profession_title"] = this.teacher_info.profession_title;
+              formData["research_direction"] = this.teacher_info.research_direction;
+              formData["lab_belonging_id"] = this.teacher_info.lab_belonging_id;
+            }else{
+              formData["school_name"] = this.alumni_info.school_name;
+              formData["work_field"] = this.alumni_info.work_field;
+              formData["enterprise_belonging_id"] = this.alumni_info.enterprise_belonging_id;
+            }
+            this.$axios({
+            method: "get" ,
+            url: "/Register/",
+            params: formData,
+            }).then((res) => {
+              // res.header("Access-Control-Allow-Origin", "*");
+              alert("注册成功，等待管理员审核！");
+                  // // this.$store.state.url="http://43.138.76.79"+res.data.post.url;
+                  // this.$message.success("登录成功！");
+                  // this.$store.commit('login');//这个函数会修改islogin全局变量的值，当然也可以直接修改
+                  // /* 将后端返回的 user 信息使用 vuex 存储起来 */
+                  // /* 从 localStorage 中读取 preRoute 键对应的值 */
+                  // //const history_pth = localStorage.getItem('preRoute');
+                  // /* 若保存的路由为空或为注册路由，则跳转首页；否则跳转前路由（setTimeout表示1000ms后执行） */
+                // localStorage.setItem('storeState',JSON.stringify(this.$store.state));
+                console.log(res);
+                this.$router.push("/login");
+            })
           }
       }
   }

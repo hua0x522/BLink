@@ -66,11 +66,6 @@
         :icon="icons.mdiTable"
       ></nav-menu-link>
       <nav-menu-link
-        title="账户审核"
-        :to="{ name: 'judge' }"
-        :icon="icons.mdiTable"
-      ></nav-menu-link>
-      <nav-menu-link
         title="个人中心"
         :to="{ name: 'me' }"
         :icon="icons.mdiFormSelect"
