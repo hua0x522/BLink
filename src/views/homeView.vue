@@ -18,22 +18,22 @@
                 <carousel-3d 
                              :perspective="30"
                              :border="0"
-                             :width="585"
-                             :height="370"
+                             :width="500"
+                             :height="820"
                              :controls-visible="true"
                              :space="500"
                              :clickable="true">
       
                   <slide :index="0">
-                    <img src="../../img/img1.jpg" />
+                    <img src="../../img/news1.jpg" />
                   </slide>
       
                   <slide :index="1">
-                    <img src="../../img/img1.jpg" />
+                    <img src="../../img/news2.jpg" />
                   </slide>
       
                   <slide :index="2">
-                    <img src="../../img/img1.jpg" />
+                    <img src="../../img/news3.jpg" />
                   </slide>
       
                 </carousel-3d>

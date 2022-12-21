@@ -11,6 +11,7 @@ import Stat from '@/views/statView'
 import Me from '@/views/meView'
 import Talk from '@/views/talkView'
 import Receive from '@/views/receiveView'
+import Judge from '@/views/judgeView'
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,11 @@ const routes = [
                 path: '/talk',
                 name: 'talk',
                 component: Talk
+            },
+            {
+                path: '/judge',
+                name: 'judge',
+                component: Judge 
             }
         ]
     }

@@ -14,7 +14,6 @@ Vue.config.productionTip = true;
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = "http://10.192.197.42:8080/api";
 
-
 new Vue({
   router,
   store,

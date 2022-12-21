@@ -25,25 +25,27 @@
 
     <v-row>
       <v-col v-for="(content, i) in contents" :key="i" cols="4">
-        <v-card height="150px">
+        <v-card height="300px">
+          <v-img max-height="180px" src="../../img/pass.jpg" :contain="true"></v-img>
           <v-card-text class="d-flex align-center justify-center">
-            <p class="text-h5 accent--text">{{content.name}}</p>
+            <h1>{{content.name}}</h1>
           </v-card-text>
           <v-card-actions class="d-flex align-center justify-center">
             <v-btn class="accent" @click="look(i)">浏览</v-btn>
             <v-btn class="error" @click="remove(i)">删除</v-btn>
           </v-card-actions>
         </v-card>
-        <v-dialog v-model="lookInfo" max-width="500px">
+        <v-dialog v-model="showInfo" max-width="500px">
           <v-card>
             <v-card-text>
-              <h1>{{(lookInfo > 0) ? contents[lookInfo-1].name: ""}}</h1>
+              <!-- <h1>{{(lookInfo > 0) ? contents[lookInfo-1].name: ""}}</h1>
               <h2>教育背景</h2>
               <p>{{(lookInfo > 0) ? contents[lookInfo-1].edu: ""}}</p>
               <h2>个人陈述</h2>
               <p>{{(lookInfo > 0) ? contents[lookInfo-1].state: ""}}</p>
               <h2>项目经历</h2>
-              <p>{{(lookInfo > 0) ? contents[lookInfo-1].experience: ""}}</p>
+              <p>{{(lookInfo > 0) ? contents[lookInfo-1].experience: ""}}</p> -->
+              <h1>{{ contents[lookInfo].name }}</h1>
             </v-card-text>
             <v-card-actions class="d-flex align-center justify-center">
               <v-btn class="error" @click="close">关闭</v-btn>
@@ -67,7 +69,8 @@ export default {
         experience: ""
       },
       contents: [],
-      lookInfo: 0
+      lookInfo: 0,
+      showInfo: false
     }
   },
   methods: {
@@ -82,10 +85,11 @@ export default {
       this.content.state = "";    
     },
     look(i) {
-      this.lookInfo = i + 1
+      this.lookInfo = i
+      this.showInfo = true
     },
     close() {
-      this.lookInfo = 0
+      this.showInfo = false 
     },
     remove(i) {
       this.remove_serve(i);
