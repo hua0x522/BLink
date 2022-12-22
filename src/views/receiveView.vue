@@ -88,7 +88,6 @@ export default {
     return {
       writeInfo: 0,
       lookInfo: 0,
-      showInfo: false,
       contents:[],
       content: {
         description:"",
@@ -110,7 +109,7 @@ export default {
       this.writeInfo = !this.writeInfo;
       let clone = Object.assign({}, this.content);
       this.contents.push(clone);
-      // this.submit_serve();
+      this.submit_serve(clone);
       this.content.city = ""; 
       this.content.demanding = ""; 
       this.content.description = ""; 
@@ -119,7 +118,32 @@ export default {
     },
     look(i) {
       this.lookInfo = i + 1
-      this.showInfo = true
+    },
+    close() {
+      this.lookInfo = 0
+    },
+    submit_serve(clone){
+      let formData={};
+      formData["id"]= this.$store.state.user.username.concat("-").concat(clone.label[2]);
+      formData["name"]=clone.label[2];
+      formData["posPublisher_id"]=this.$store.state.user.username;
+      formData["description"]=clone.description;
+      formData["demanding"]=clone.demanding;
+      formData["salary"]=clone.salary;
+      formData["place"]=clone.city;
+      formData["label1"]=clone.label[0];
+      formData["label2"]=clone.label[1];
+      formData["label3"]=clone.label[2];
+      console.log(formData)
+      this.$axios({
+        method: "get" /* 指明请求方式，可以是 get 或 post */,
+        url: "/CreatePosition/" /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */,
+        params: formData,
+      })
+        .then((res) => {
+          console.log(res);
+          alert("创建成功！");
+        })
     }
   }
 }
