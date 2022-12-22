@@ -26,7 +26,7 @@
     <v-row>
       <v-col v-for="(content, i) in contents" :key="i" cols="4">
         <v-card height="300px">
-          <v-img max-height="180px" src="../../img/pass.jpg" :contain="true"></v-img>
+          <v-img max-height="180px" :src="getPhoto(i)" :contain="true"></v-img>
           <v-card-text class="d-flex align-center justify-center">
             <h1>{{content.name}}</h1>
           </v-card-text>
@@ -65,7 +65,8 @@ export default {
         name: "",
         edu: "",
         state: "",
-        experience: ""
+        experience: "",
+        status: 2
       },
       contents: [],
       lookInfo: 0,
@@ -82,6 +83,11 @@ export default {
       this.content.experience = "";
       this.content.edu = "";
       this.content.state = "";    
+    },
+    getPhoto(i) {
+      if (this.contents[i].status == 0) return require("../../img/reject.jpg");
+      else if (this.contents[i].status == 1) return require("../../img/pass.jpg");
+      else if (this.contents[i].status == 2) return require("../../img/waiting.jpg");
     },
     look(i) {
       this.lookInfo = i

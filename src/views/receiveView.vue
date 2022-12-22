@@ -57,12 +57,20 @@
               {{ applicant }}
             </v-chip>
 
-            <v-dialog v-model="lookInfo" max-width="500px">
+            <v-dialog v-model="showInfo" max-width="500px">
               <v-card>
                 <v-card-text>
+                  <!-- <h1>{{contents[lookInfo].name}}</h1>
+                  <h2>教育背景</h2>
+                  <p>{{contents[lookInfo].edu}}</p>
+                  <h2>个人陈述</h2>
+                  <p>{{contents[lookInfo].state}}</p>
+                  <h2>项目经历</h2>
+                  <p>{{contents[lookInfo].experience}}</p> -->
                 </v-card-text>
                 <v-card-actions class="d-flex align-center justify-center">
-                  <v-btn class="error" @click="close">关闭</v-btn>
+                  <v-btn class="primary">通过</v-btn>
+                  <v-btn class="error">不通过</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -80,6 +88,7 @@ export default {
     return {
       writeInfo: 0,
       lookInfo: 0,
+      showInfo: false,
       contents:[],
       content: {
         description:"",
@@ -110,9 +119,7 @@ export default {
     },
     look(i) {
       this.lookInfo = i + 1
-    },
-    close() {
-      this.lookInfo = 0
+      this.showInfo = true
     }
   }
 }
