@@ -89,7 +89,15 @@
           </v-col>
         </v-row>
         <v-dialog v-model="showInfo" max-width="500px">
-
+          <v-card class="pa-4">
+            <h1>{{ contents[lookInfo].name }}</h1>
+            <h2>岗位描述</h2>
+            <div>{{ contents[lookInfo].description }}</div>
+            <h2>岗位要求</h2>
+            <div>{{ contents[lookInfo].demanding }}</div>
+            <h3>薪酬区间：{{ contents[lookInfo].salary }}</h3>
+            <h3>工作地点：{{ contents[lookInfo].place }}</h3>
+          </v-card>
         </v-dialog>
         <v-dialog v-model="showSend" max-width="500px">
           <v-card class="pa-4">

@@ -82,11 +82,21 @@
               <v-row class="mt-8">
                 <v-spacer></v-spacer>
                 <v-col>
-                  <v-text-field rounded outlined dense label="旧密码"></v-text-field>
-                  <v-text-field rounded outlined dense label="新密码"></v-text-field>
-                  <v-text-field rounded outlined dense label="重复密码"></v-text-field>
+                  <v-text-field rounded outlined dense label="旧密码" v-model="oldPwd" 
+                  @click:append="showPwd1 = !showPwd1" 
+                  :append-icon="showPwd1 ? 'mdi-eye' : 'mdi-eye-off'" 
+                  :type="showPwd1 ? 'text' : 'password'"></v-text-field>
+
+                  <v-text-field rounded outlined dense label="新密码" v-model="newPwd" 
+                  :append-icon="showPwd2 ? 'mdi-eye' : 'mdi-eye-off'" @click:append="showPwd2 = !showPwd2" 
+                  :type="showPwd2 ? 'text' : 'password'"></v-text-field>
+
+                  <v-text-field rounded outlined dense label="重复密码" v-model="repeatPwd" 
+                  :append-icon="showPwd3 ? 'mdi-eye' : 'mdi-eye-off'" @click:append="showPwd3 = !showPwd3" 
+                  :type="showPwd3 ? 'text' : 'password'"></v-text-field>
+
                   <div class="d-flex justify-center">
-                    <v-btn class="primary mb-8">修改密码</v-btn>
+                    <v-btn class="primary mb-8" @click="changePwd">修改密码</v-btn>
                   </div>
                 </v-col>
                 <v-spacer></v-spacer>
@@ -112,11 +122,32 @@ export default {
           tab: 0,
           gender: ['男','女'],
           user: {},
+          oldPwd:"",
+          newPwd:"",
+          repeatPwd:"",
+          showPwd1: false,
+          showPwd2: false,
+          showPwd3: false
       }
     },
     methods: {
       submit() {
         this.$store.state.user = this.user;
+      },
+      changePwd() {
+        if (this.oldPwd != this.$store.state.user.password) {
+          alert('旧密码输入错误！');
+        }
+        else if (this.oldPwd == this.newPwd) {
+          alert('新密码不能与旧密码相同！');
+        }
+        else if (this.newPwd != this.repeatPwd) {
+          alert('重复密码与新密码不一致！');
+        }
+        else {
+          this.$store.state.user.password = this.newPwd;
+          //TODO
+        }
       }
     },
     mounted() {

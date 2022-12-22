@@ -38,14 +38,13 @@
         <v-dialog v-model="showInfo" max-width="500px">
           <v-card>
             <v-card-text>
-              <!-- <h1>{{(lookInfo > 0) ? contents[lookInfo-1].name: ""}}</h1>
+              <h1>{{contents[lookInfo].name}}</h1>
               <h2>教育背景</h2>
-              <p>{{(lookInfo > 0) ? contents[lookInfo-1].edu: ""}}</p>
+              <p>{{contents[lookInfo].edu}}</p>
               <h2>个人陈述</h2>
-              <p>{{(lookInfo > 0) ? contents[lookInfo-1].state: ""}}</p>
+              <p>{{contents[lookInfo].state}}</p>
               <h2>项目经历</h2>
-              <p>{{(lookInfo > 0) ? contents[lookInfo-1].experience: ""}}</p> -->
-              <h1>{{ contents[lookInfo].name }}</h1>
+              <p>{{contents[lookInfo].experience}}</p>
             </v-card-text>
             <v-card-actions class="d-flex align-center justify-center">
               <v-btn class="error" @click="close">关闭</v-btn>
