@@ -145,7 +145,21 @@ export default {
     },
     methods: {
       submit() {
-
+        let formData={};
+        formData["label1"]=this.label[0];
+        formData["label2"]=this.label[1];
+        formData["label3"]=this.label[2];
+        formData["salary"]=this.salary;
+        formData["place"]=this.city;
+        this.$axios({
+        method: "get" /* 指明请求方式，可以是 get 或 post */,
+        url: "/SearchPosition/" /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */,
+        params: formData,
+      })
+        .then((res) => {
+          console.log(res);
+          this.contents=res.data;
+        })
       },
       look(i) {
         this.lookInfo = i;
@@ -154,6 +168,7 @@ export default {
       send(i) {
         this.lookInfo = i;
         this.showSend = true;
+
       }
     }
 }
