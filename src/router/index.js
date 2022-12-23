@@ -33,7 +33,7 @@ const routes = [
         path: '/',
         name: 'base',
         component: Base,
-        redirect: '/home', 
+        redirect: '/login', 
         children:[
             {
                 path: '/home',

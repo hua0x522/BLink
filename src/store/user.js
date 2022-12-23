@@ -7,7 +7,7 @@ let user = {
         password: "123456",
         sex: "男",
         status:"",
-        type: "学生",
+        type: "0",
         student: {
             school_name:"",
             grade:"",

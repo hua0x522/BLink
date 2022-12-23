@@ -49,11 +49,13 @@
         title="创建简历"
         :to="{ name: 'resume' }"
         :icon="icons.mdiAlphaTBoxOutline"
+        v-if="this.$store.state.user.type=='0'"
       ></nav-menu-link>
       <nav-menu-link
         title="接收简历"
         :to="{ name: 'receive' }"
         :icon="icons.mdiEyeOutline"
+        v-if="this.$store.state.user.type=='1'|| this.$store.state.user.type=='2'"
       ></nav-menu-link>
       <nav-menu-link
         title="畅所欲言"
@@ -69,6 +71,7 @@
         title="账户审核"
         :to="{ name: 'judge' }"
         :icon="icons.mdiTable"
+        v-if="this.$store.state.user.type=='3'"
       ></nav-menu-link>
       <nav-menu-link
         title="个人中心"

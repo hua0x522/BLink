@@ -64,9 +64,13 @@
     },
     methods: {
       submit() {
+        if(this.content.title==""){
+            alert("帖子标题不能为空！");
+            return;
+          }
         this.writeInfo = !this.writeInfo;
         let clone = Object.assign({}, this.content);
-        this.contents.push(clone);
+        this.submit_serve(clone);
         this.content.text = "";
         this.content.title = "";  
       },
@@ -78,16 +82,53 @@
         this.showInfo = false
       },
       remove(i) {
-        this.contents.splice(i, 1)
+        if (this.$store.state.user.type=="3") {
+          let formData={};
+          formData["id"]= this.contents[i].title;
+          this.contents.splice(i, 1);
+          this.$axios({
+            method: "get" /* 指明请求方式，可以是 get 或 post */,
+            url: "/DeletePost/" /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */,
+            params: formData,
+          })
+          .then((res) => {
+            if(res.data['success']==true){
+              alert("帖子删除成功！");
+          }})
+        }else{
+          alert("您没有删除权限！");
+        }     
       },
-      submit_serve() {
-        //TODO
-      },
-      remove_serve(i) {
-        i;
+      submit_serve(clone){
+        let formData={};
+          formData["id"]=clone.title;
+          formData["title"]=clone.title;
+          formData['content']=clone.text;
+          this.$axios({
+            method: "get" /* 指明请求方式，可以是 get 或 post */,
+            url: "/SendPost/" /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */,
+            params: formData,
+          })
+          .then((res) => {
+            console.log(res);
+            if(res.data['success']==1){
+              this.contents.push(clone);
+              alert("帖子发布成功！");
+            }else{
+              alert("标题已存在！");
+            }
+          })
         //TODO
       },
       getIssue() {
+        this.$axios({
+            method: "get" /* 指明请求方式，可以是 get 或 post */,
+            url: "/LookPost/" /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */,
+            params: {},
+          })
+          .then((res) => {
+            this.contents=res.data;
+          })
         //TODO
       }
     },

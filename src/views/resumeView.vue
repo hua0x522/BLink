@@ -66,7 +66,7 @@ export default {
         edu: "",
         state: "",
         experience: "",
-        status: 2
+        status: "0"
       },
       contents: [],
       lookInfo: 0,
@@ -78,16 +78,16 @@ export default {
       this.writeInfo = !this.writeInfo;
       let clone = Object.assign({}, this.content);
       this.contents.push(clone);
-      this.submit_serve();
+      this.submit_serve(clone);
       this.content.name = "";
       this.content.experience = "";
       this.content.edu = "";
       this.content.state = "";    
     },
     getPhoto(i) {
-      if (this.contents[i].status == 0) return require("../../img/reject.jpg");
-      else if (this.contents[i].status == 1) return require("../../img/pass.jpg");
-      else if (this.contents[i].status == 2) return require("../../img/waiting.jpg");
+      if (this.contents[i].status == "2") return require("../../img/reject.jpg");
+      else if (this.contents[i].status == "1") return require("../../img/pass.jpg");
+      else if (this.contents[i].status == "0") return require("../../img/waiting.jpg");
     },
     look(i) {
       this.lookInfo = i
@@ -101,14 +101,58 @@ export default {
       this.contents.splice(i, 1);
     },
     
-    submit_serve() {
+    submit_serve(clone) {
+      let formData={};
+      formData['id']=this.$store.state.user.username.concat("-").concat(clone.name);
+      formData['sender_id']=this.$store.state.user.username;
+      formData['edu_background']=clone.edu;
+      formData['per_statement']=clone.state;
+      formData['name']=clone.name;
+      formData['experience']=clone.experience;
+      formData['status']=clone.status;
+
+      this.$axios({
+        method: "get" /* 指明请求方式，可以是 get 或 post */,
+        url: "/MakeResume/" /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */,
+        params: formData,
+      })
+        .then((res) => {
+          if(res.data['success']==true){
+            alert("创建成功！");
+          }else{
+            alert("已存在该简历！");
+          }
+        })
       //TODO
     },
     remove_serve(i) {
-      i;
+      let formData={};
+      formData['id']=this.$store.state.user.username.concat("-").concat(this.contents[i].name);
+      this.$axios({
+        method: "get" /* 指明请求方式，可以是 get 或 post */,
+        url: "/DeleteResume/" /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */,
+        params: formData,
+      })
+        .then((res) => {
+          if(res.data['success']==true){
+            alert("删除成功！");
+          }
+        })
       //TODO
     },
     getMyResume() {
+      let formData={};
+      formData['sender']=this.$store.state.user.username;
+      this.$axios({
+        method: "get" /* 指明请求方式，可以是 get 或 post */,
+        url: "/LookMyResume/" /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */,
+        params: formData,
+      })
+        .then((res) => {
+          this.contents=res.data;
+          console.log(this.contents);
+
+        })
       //TODO
     }
   },
