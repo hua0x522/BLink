@@ -24,18 +24,7 @@
     </v-row>
 
     <v-row>
-      <v-col v-for="(content, i) in contents" :key="i" cols="4">
-        <v-card height="300px">
-          <v-img max-height="180px" :src="getPhoto(i)" :contain="true"></v-img>
-          <v-card-text class="d-flex align-center justify-center">
-            <h1>{{content.name}}</h1>
-          </v-card-text>
-          <v-card-actions class="d-flex align-center justify-center">
-            <v-btn class="accent" @click="look(i)">浏览</v-btn>
-            <v-btn class="error" @click="remove(i)">删除</v-btn>
-          </v-card-actions>
-        </v-card>
-        <v-dialog v-model="showInfo" max-width="500px">
+      <v-dialog v-model="showInfo" max-width="500px">
           <v-card>
             <v-card-text>
               <h1>{{contents[lookInfo].name}}</h1>
@@ -51,6 +40,17 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
+      <v-col v-for="(content, i) in contents" :key="i" cols="4">
+        <v-card height="300px">
+          <v-img max-height="180px" :src="getPhoto(i)" :contain="true"></v-img>
+          <v-card-text class="d-flex align-center justify-center">
+            <h1>{{content.name}}</h1>
+          </v-card-text>
+          <v-card-actions class="d-flex align-center justify-center">
+            <v-btn class="accent" @click="look(i)">浏览</v-btn>
+            <v-btn class="error" @click="remove(i)">删除</v-btn>
+          </v-card-actions>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
