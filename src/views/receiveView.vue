@@ -44,8 +44,8 @@
     </v-row>
 
     <v-card class="mt-8">
-      <v-img height="500" src="../../img/img1.jpg"></v-img>
-      <v-dialog v-model="showInfo" max-width="500px">
+      <v-img height="400" src="../../img/img1.jpg"></v-img>
+      <v-dialog v-model="showInfo" max-width="400px">
               <v-card>
                 <v-card-text>
                   <h1>{{applicants.filter(item => item.position_id == contents[index_].id).length!=0?
@@ -111,7 +111,7 @@ export default {
           industries: {'IT科技':['计算机','电子信息','网络安全'],'文化传媒':['影视','新闻媒体','网络文化'],
           '金融财务':['期货','投行','券商']},
           occupations: {'计算机':['软件工程师','算法工程师'],'电子信息':['芯片工程师','架构师'],'网络安全':['网络安全工程师','算法工程师'],
-          '影视':['文化总监','摄影师'],'新闻媒体':['总编辑','记者'],'网络文化':['软件工程师','算法工程师'],
+          '影视':['文化总监','摄影师'],'新闻媒体':['总编辑','记者'],'网络文化':['网络作家','运营总监'],
           '期货':['风险管理','算法工程师'],'投行':['投资银行部','资产管理'],'券商':['量化交易员','技术总监'],
           },
       cities: ["北京市","上海市","深圳市","香港市"],
